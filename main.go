@@ -11,7 +11,7 @@ func main() {
 	server := gin.Default()
 	fmt.Println("Personal folder")
 
-	// server.Static("/", "./public")
+	server.StaticFile("/", "./public/index.html")
 
 	server.GET("/get-all-users", handler.GetUsersHandler)
 	server.POST("/register", handler.RegisterHandler)

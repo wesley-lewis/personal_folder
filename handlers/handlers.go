@@ -12,9 +12,11 @@ var usersData []model.UserData
 
 func RegisterHandler(c *gin.Context) {
 	var user model.UserData
-
-	if err := c.BindJSON(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "all details must be provided"})
+	// fmt.Println(c.PostForm("name"), c.PostForm("email"), c.PostForm("mobile_no"))
+	if err := c.Bind(&user); err != nil {
+		// c.JSON(http.StatusBadRequest, gin.H{"error": "all details must be provided"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
 
 	usersData = append(usersData, user)
