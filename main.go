@@ -15,6 +15,7 @@ func main() {
 
 	server.GET("/get-all-users", handler.GetUsersHandler)
 	server.POST("/register", handler.RegisterHandler)
+	server.POST("upload-file", handler.UploadFile)
 
 	server.Run(":8080")
 }

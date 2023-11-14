@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -26,4 +27,12 @@ func RegisterHandler(c *gin.Context) {
 
 func GetUsersHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"users": usersData})
+}
+
+func UploadFile(c *gin.Context) {
+	file, _ := c.FormFile("file")
+	log.Println(file.Filename)
+
+	c.SaveUploadedFile(file, "./files/"+file.Filename)
+	c.JSON(http.StatusOK, gin.H{"message": "file uploaded successfully"})
 }
